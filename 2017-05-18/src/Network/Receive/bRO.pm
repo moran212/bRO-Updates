@@ -25,7 +25,7 @@ sub new {
 	my %packets = (
 		'0097' => ['private_message', 'v Z24 V Z*', [qw(len privMsgUser flag privMsg)]], # -1
 		'0A36' => ['monster_hp_info_tiny', 'a4 C', [qw(ID hp)]],
-		'09CB' => ['skill_used_no_damage', 'v2 a6 a4 C', [qw(skillID amount targetID sourceID success)]],
+		'09CB' => ['skill_used_no_damage', 'v v x2 a4 a4 C', [qw(skillID amount targetID sourceID success)]],
 	);
 	# Sync Ex Reply Array 
 	$self->{sync_ex_reply} = {
@@ -66,7 +66,7 @@ sub monster_hp_info_tiny {
 	if ($monster) {
 		$monster->{hp} = $args->{hp};
 		
-		debug TF("Monster %s has about %d%% hp left\n", $monster->name, $monster->{hp} * 4), "parseMsg_damage"; # FIXME: Probably accurate
+		debug TF("Monster %s has about %d%% hp left\n", $monster->name, $monster->{hp} * 4), "parseMsg_damage"; # FIXME: Probably inaccurate
 	}
 }
 
