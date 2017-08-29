@@ -46,7 +46,7 @@ sub sync_received_characters {
 	# In most servers, this should happen unless the client is alive
 	# This behavior was observed in April 12th 2017, when Odin and Asgard were merged into Valhalla
 	for (1..$args->{sync_Count}) {
-		$messageSender->sendToServer($self->reconstruct({switch => 'sync_received_characters'}));
+		$messageSender->sendToServer($messageSender->reconstruct({switch => 'sync_received_characters'}));
 	}
 }
 
