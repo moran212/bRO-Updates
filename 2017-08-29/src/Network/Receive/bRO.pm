@@ -26,6 +26,8 @@ sub new {
 		'09CB' => ['skill_used_no_damage', 'v V a4 a4 C', [qw(skillID amount targetID sourceID success)]],
 	);
 	
+	foreach my $switch (keys %packets) { $self->{packet_list}{$switch} = $packets{$switch}; }
+	
 	my %handlers = qw(
 		received_characters 099D
 		received_characters_info 082D
